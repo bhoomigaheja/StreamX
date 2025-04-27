@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
-import "./TVShows.css"; // ✅ (ya TitleCards.css reuse)
+import "./tvshows.css";
+
 
 const TV_CATEGORIES = [
   { title: "Classic TV Shows", category: "classic_tv" },
