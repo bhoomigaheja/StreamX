@@ -20,6 +20,8 @@ overflow-x: scroll;
     width: 240px;
     border-radius: 4px;
     cursor: pointer;
+    height: 135px; /* ADD THIS */
+    object-fit: cover; /* ADD THIS */
 }
 .card-list .card{
     position: relative;
@@ -47,6 +49,7 @@ overflow-x: scroll;
     }
     .card-list img{
         width: 200px;
+        height: 112px; 
     }
     .card-list p{
         font-size: 12px;
@@ -60,6 +63,8 @@ overflow-x: scroll;
     }
     .card-list img{
         width: 165px;
+        height: 93px;
+
     }
     .card-list p{
         font-size: 10px;
