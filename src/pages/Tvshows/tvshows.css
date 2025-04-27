@@ -1,0 +1,38 @@
+.tv-shows-page {
+    padding: 20px;
+    color: white;
+  }
+  
+  .category-section {
+    margin-bottom: 50px; /* Increase gap between categories */
+  }
+  
+  .category-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px; /* Space between heading and cards */
+  }
+  
+  .card-list {
+    display: flex;
+    overflow-x: scroll;
+    gap: 15px;
+    padding-bottom: 10px; /* Extra spacing */
+  }
+  
+  .card {
+    min-width: 200px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  .card img {
+    width: 100%;
+    border-radius: 10px;
+  }
+  
+  .card p {
+    text-align: center;
+    margin-top: 5px;
+  }
+  
