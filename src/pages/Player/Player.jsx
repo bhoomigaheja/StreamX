@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import './Player.css';
 import back from '../../assets/back_arrow_icon.png';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -45,16 +45,14 @@ const Player = () => {
     fetchMovie();
   }, [archiveId]);
 
-  // 🔍 Look for a video file
-  const getVideoUrl = () => {
+  // Use useMemo to calculate videoUrl after movieData is ready
+  const videoUrl = useMemo(() => {
     if (!movieData?.files) return null;
     const videoFile = movieData.files.find(file =>
       file.name.match(/\.(mp4|ogv|webm)$/)
     );
     return videoFile ? `https://archive.org/download/${archiveId}/${videoFile.name}` : null;
-  };
-
-  const videoUrl = getVideoUrl();
+  }, [movieData, archiveId]);
 
   return (
     <div className="player">
@@ -75,7 +73,6 @@ const Player = () => {
 
       <div className="player-info">
         <h2>{archiveId.replace(/[_-]/g, ' ')}</h2>
-        
       </div>
     </div>
   );

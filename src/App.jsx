@@ -10,6 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import TVShows from "./pages/Tvshows/tvshows";
 import Movies from "./pages/Movies/Movies";
 import NewPopular from "./pages/New&Popular/New&popular";
+import MyList from "./pages/Mylist/Mylist";
 
 const App = () => {
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const App = () => {
   <Route path="/new-popular" element={<NewPopular />} /> 
      {/* ✅ Fix: Add Route for Player */}
      <Route path="/player/:id" element={<Player />} />
+     <Route path="/my-list" element={<MyList />} />
 </Routes>
     </div>
   );

@@ -28,16 +28,27 @@ const Home = () => {
       </div>
       
       <div className="more-cards">
-      <TitleCards title="Trending Now" category="action" />
-<TitleCards title="Blockbuster Movies" category="classic" />
-<TitleCards title="Upcoming" category="drama" />
-
-
-<TitleCards title="Retro Horror" category="horror" />
-<TitleCards title="Family Time" category="animation" />
-<TitleCards title="Vintage Romance" category="romance" />
-<TitleCards title="Comedy Classics" category="comedy" />
-<TitleCards title="Mystery & Thrills" category="mystery" />
+      <TitleCards title="Bollywood Blockbusters" category="bollywood" />
+        <TitleCards title="South Indian Movies" category="south indian" />
+        <TitleCards title="Hindi Dubbed Movies" category="hindi dubbed" />
+        <TitleCards title="Hollywood Action" category="action" />
+     
+        <TitleCards title="Family Drama" category="family" />
+        <TitleCards title="Old Classic Hits" category="classic" />
+        <TitleCards title="Thrilling Suspense" category="thriller" />
+       
+        <TitleCards title="Animated Adventures" category="animation" />
+        <TitleCards title="Laugh Out Loud" category="comedy" />
+     
+        <TitleCards title="Documentaries" category="documentary" />
+        <TitleCards title="War and History" category="war" />
+        <TitleCards title="Anime Specials" category="anime" />
+        <TitleCards title="Kids and Family" category="kids" />
+        <TitleCards title="Music & Concerts" category="music" />
+     
+        <TitleCards title="Mystery & Thrills" category="mystery" />
+       
+  
 
 
       </div>

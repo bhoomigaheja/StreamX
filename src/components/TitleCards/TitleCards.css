@@ -49,7 +49,7 @@ overflow-x: scroll;
     }
     .card-list img{
         width: 200px;
-        height: 112px; 
+        height: 112px; /
     }
     .card-list p{
         font-size: 12px;
@@ -70,3 +70,44 @@ overflow-x: scroll;
         font-size: 10px;
     }
 }
+@media (max-width: 800px) {
+    .card-list img {
+        width: 200px;
+        height: 112px; /* maintain same ratio */
+    }
+}
+@media (max-width: 500px) {
+    .card-list img {
+        width: 165px;
+        height: 93px; /* maintain same ratio */
+    }
+}
+.card-list img {
+    width: 240px;
+    height: 135px; /* ADD THIS */
+    object-fit: cover; /* ADD THIS */
+    border-radius: 4px;
+    cursor: pointer;
+}
+.add-icon {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 24px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 18px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 2;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-icon:hover {
+    background-color: #e50914; /* Netflix red */
+  }
+  

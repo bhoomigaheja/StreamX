@@ -3,39 +3,46 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 
-const API_KEY = "e325e198af0ed4ad8ab9f67265504489"; // ✅ Your TMDb API Key
-const BASE_URL = "https://api.themoviedb.org/3";
+
 
 const CATEGORIES = [
-
-
- 
-  { id: "popular_tv", endpoint: "tv/popular", title: "Popular TV Shows" },
-  { id: "top_rated_tv", endpoint: "tv/top_rated", title: "Top Rated TV Shows" },
-  { id: "top_rated_movies", endpoint: "movie/top_rated", title: "Top Rated Movies" },
+  { id: "classic_movies", title: "Classic Movies", category: "classic" },
+  { id: "action_movies", title: "Action Packed Movies", category: "action" },
+  { id: "popular_tv", title: "Popular TV Shows", category: "popular" },
+  { id: "south_indian_movies", title: "South Indian Movies", category: "south indian" },
+  { id: "hollywood_action", title: "Hollywood Action", category: "action" },
+  { id: "comedy_movies", title: "Comedy Movies", category: "comedy" },
+  { id: "documentaries", title: "Documentaries", category: "documentary" },
+  
 ];
 
 const NewPopular = () => {
   const [data, setData] = useState({});
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       const fetchedData = {};
 
-      for (const category of CATEGORIES) {
+      for (const cat of CATEGORIES) {
         try {
           const response = await fetch(
-            `${BASE_URL}/${category.endpoint}?api_key=${API_KEY}&language=en-US&page=1`
+            `https://archive.org/advancedsearch.php?q=subject:(${encodeURIComponent(
+              cat.category
+            )})+AND+mediatype:(movies)&fl[]=identifier,title,description,publicdate&sort[]=downloads+desc&rows=12&page=1&output=json`
           );
           const result = await response.json();
-          fetchedData[category.id] = result.results || [];
+          fetchedData[cat.id] = result.response.docs || [];
         } catch (error) {
-          console.error(`Error fetching ${category.id}:`, error);
-          fetchedData[category.id] = [];
+          console.error(`Error fetching ${cat.id}:`, error);
+          fetchedData[cat.id] = [];
         }
       }
+
       setData(fetchedData);
+      setLoading(false);
     };
 
     fetchData();
@@ -45,33 +52,37 @@ const NewPopular = () => {
     <div className="new-popular-page">
       <Navbar />
       <div style={{ paddingTop: "80px", paddingBottom: "20px" }}>
-      <h1>New & Popular</h1>
+        <h1 style={{ marginLeft: "20px" }}>New & Popular</h1>
 
-      {CATEGORIES.map((category) => (
-        <div key={category.id} className="category-section" style={{ marginBottom: "60px" }}>
-          <h2>{category.title}</h2>
-          <div className="card-list">
-            {data[category.id]?.length > 0 ? (
-              data[category.id].map((item) => (
-                <div
-                  key={item.id}
-                  className="card"
-                  onClick={() => navigate(`/player/${item.id}`)}
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${item.backdrop_path}`}
-                    alt={item.title || item.name}
-                  />
-                  <p>{item.title || item.name}</p>
-                </div>
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        </div>
-      ))}
+        {loading ? (
+          <p style={{ textAlign: "center" }}>Loading...</p>
+        ) : (
+          CATEGORIES.map((cat) => (
+            <div key={cat.id} className="titlecards">
+              <h2>{cat.title}</h2>
+              <div className="card-list">
+                {data[cat.id]?.length > 0 ? (
+                  data[cat.id].map((item, index) => (
+                    <div
+                      key={index}
+                      className="card"
+                      onClick={() => navigate(`/player/${item.identifier}`)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={`https://archive.org/services/img/${item.identifier}`}
+                        alt={item.title}
+                      />
+                      <p>{item.title}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No items found for {cat.title}</p>
+                )}
+              </div>
+            </div>
+          ))
+        )}
       </div>
       <Footer />
     </div>

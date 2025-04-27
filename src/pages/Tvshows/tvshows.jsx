@@ -1,74 +1,84 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import "./TVShows.css"; // ✅ (ya TitleCards.css reuse)
 
-const API_KEY = "e325e198af0ed4ad8ab9f67265504489"; // ✅ Your TMDb API Key
-const BASE_URL = "https://api.themoviedb.org/3/tv";
-
-const CATEGORIES = [
-  { id: "popular", title: "Popular TV Shows" },
-  { id: "top_rated", title: "Top Rated TV Shows" },
-  { id: "airing_today", title: "Airing Today" },
-  { id: "on_the_air", title: "Currently Airing" },
+const TV_CATEGORIES = [
+  { title: "Classic TV Shows", category: "classic_tv" },
+  { title: "Sci-Fi Shows", category: "science_fiction" },
+  { title: "Vintage Cartoons", category: "cartoons" },
+  { title: "Comedy Shows", category: "comedy" },
 ];
 
 const TVShows = () => {
-  const [tvShows, setTVShows] = useState({});
+  const [tvData, setTvData] = useState({});
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchTVShows = async () => {
+      setLoading(true);
       const fetchedData = {};
-      for (const category of CATEGORIES) {
+
+      for (const item of TV_CATEGORIES) {
         try {
           const response = await fetch(
-            `${BASE_URL}/${category.id}?api_key=${API_KEY}&language=en-US&page=1`
+            `https://archive.org/advancedsearch.php?q=subject:(${encodeURIComponent(
+              item.category
+            )})+AND+mediatype:(movies)&fl[]=identifier,title,description,publicdate&sort[]=downloads+desc&rows=12&page=1&output=json`
           );
           const data = await response.json();
-          fetchedData[category.id] = data.results || [];
+          fetchedData[item.category] = data.response.docs || [];
         } catch (error) {
-          console.error(`Error fetching ${category.id} shows:`, error);
-          fetchedData[category.id] = [];
+          console.error(`Error fetching ${item.category} shows:`, error);
+          fetchedData[item.category] = [];
         }
       }
-      setTVShows(fetchedData);
+
+      setTvData(fetchedData);
+      setLoading(false);
     };
 
-    fetchData();
+    fetchTVShows();
   }, []);
 
   return (
     <div className="tv-shows-page">
       <Navbar />
       <div style={{ paddingTop: "80px", paddingBottom: "20px" }}>
-      <h1>TV Shows</h1>
+        <h1 style={{ marginLeft: "20px" }}>TV Shows</h1>
 
-      {CATEGORIES.map((category) => (
-        <div key={category.id} className="category-section" style={{ marginBottom: "60px" }}>
-          <h2>{category.title}</h2>
-          <div className="card-list">
-            {tvShows[category.id]?.length > 0 ? (
-              tvShows[category.id].map((show) => (
-                <div
-                  key={show.id}
-                  className="card"
-                  onClick={() => navigate(`/player/${show.id}`)} // ✅ Added Player Navigation
-                  style={{ cursor: "pointer" }}
-                >
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${show.backdrop_path}`}
-                    alt={show.name}
-                  />
-                  <p>{show.name}</p>
-                </div>
-              ))
-            ) : (
-              <p>Loading...</p>
-            )}
-          </div>
-        </div>
-      ))}
+        {loading ? (
+          <p style={{ textAlign: "center" }}>Loading TV shows...</p>
+        ) : (
+          TV_CATEGORIES.map((item) => (
+            <div key={item.category} className="titlecards">
+              <h2>{item.title}</h2>
+
+              <div className="card-list">
+                {tvData[item.category]?.length > 0 ? (
+                  tvData[item.category].map((show, index) => (
+                    <div
+                      key={index}
+                      className="card"
+                      onClick={() => navigate(`/player/${show.identifier}`)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <img
+                        src={`https://archive.org/services/img/${show.identifier}`}
+                        alt={show.title}
+                      />
+                      <p>{show.title}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p>No shows found in {item.title}</p>
+                )}
+              </div>
+            </div>
+          ))
+        )}
       </div>
       <Footer />
     </div>
