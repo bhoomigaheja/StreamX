@@ -6,11 +6,20 @@ const ContactUs = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [status, setStatus] = useState(null); // State for feedback message
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add functionality to store the form data (e.g., API call)
+    // Simulate form submission or API call here
     console.log({ name, email, message });
+
+    // Simulating a successful form submission
+    setStatus('Message sent successfully!'); // Show success message
+
+    // Optionally reset the form
+    setName('');
+    setEmail('');
+    setMessage('');
   };
 
   const styles = {
@@ -25,7 +34,7 @@ const ContactUs = () => {
     },
     container: {
       width: '100%',
-      maxWidth: '600px',  // Adjusted container width for a more standard size
+      maxWidth: '600px',
       backgroundColor: '#1e1e1e',
       padding: '40px',
       borderRadius: '12px',
@@ -73,7 +82,15 @@ const ContactUs = () => {
       cursor: 'pointer',
       marginBottom: '20px',
       fontSize: '16px',
-    }
+    },
+    statusMessage: {
+      marginTop: '20px',
+      padding: '10px',
+      backgroundColor: '#333',
+      color: 'green',
+      borderRadius: '6px',
+      textAlign: 'center',
+    },
   };
 
   return (
@@ -116,6 +133,7 @@ const ContactUs = () => {
           </div>
           <button type="submit" style={styles.button}>Send Message</button>
         </form>
+        {status && <div style={styles.statusMessage}>{status}</div>} {/* Display status message */}
       </div>
     </div>
   );
