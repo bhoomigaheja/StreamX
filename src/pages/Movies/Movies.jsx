@@ -9,7 +9,7 @@ const MOVIE_CATEGORIES = [
   { title: "South Indian Movies", category: "south indian" },
   { title: "Hollywood Action", category: "action" },
   { title: "Drama & Romance", category: "romance" },
-  { title: "Classic Movies", category: "classic" },
+
   { title: "Comedy Movies", category: "comedy" },
   // Add more categories as needed
 ];

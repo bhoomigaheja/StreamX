@@ -7,11 +7,12 @@ import profile from "../../assets/profile_img.png";
 import caret from "../../assets/caret_icon.svg";
 import { logout } from "../../firebase";
 import { Link } from "react-router-dom";
-import Search from "../../components/search/search"; // ✅ Import the Search component
+import Search from "../../components/search/search";
 
 const Navbar = () => {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,10 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
+  };
 
   return (
     <div ref={navRef} className={`navbar ${isScrolled ? "nav-dark" : ""}`}>
@@ -36,8 +41,22 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-right">
-        <Search /> {/* ✅ Correct placement of Search */}
-        <img src={bell} alt="Notifications" className="icons" />
+        <Search />
+        <div className="notification-container">
+          <img
+            src={bell}
+            alt="Notifications"
+            className="icons"
+            onClick={toggleNotifications}
+          />
+          {showNotifications && (
+            <div className="notification-dropdown">
+              <p>🎬 <strong>The Protector</strong> is coming December 14!</p>
+              <p>🔥 Trending: Check out new Bollywood blockbusters!</p>
+              <p>⭐ Your watchlist was updated recently.</p>
+            </div>
+          )}
+        </div>
         <div className="navbar-profile">
           <img src={profile} alt="Profile" className="profile" />
           <img id="dropdown" src={caret} alt="Caret" />

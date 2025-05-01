@@ -11,6 +11,10 @@ import TVShows from "./pages/Tvshows/tvshows";
 import Movies from "./pages/Movies/Movies";
 import NewPopular from "./pages/New&Popular/New&popular";
 import MyList from "./pages/Mylist/Mylist";
+import HelpCenter from './pages/helpcentre';
+import TermsOfUse from './pages/termsofuse';
+import Privacy from './pages/privacypolicy';
+import ContactUs from './pages/Contactus';
 
 const App = () => {
   const navigate = useNavigate();
@@ -39,6 +43,11 @@ const App = () => {
      {/* ✅ Fix: Add Route for Player */}
      <Route path="/player/:id" element={<Player />} />
      <Route path="/my-list" element={<MyList />} />
+     <Route path="/my-list" element={<MyList />} />
+        <Route path="/help-center" element={<HelpCenter />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/contact-us" element={<ContactUs />} />
 </Routes>
     </div>
   );
