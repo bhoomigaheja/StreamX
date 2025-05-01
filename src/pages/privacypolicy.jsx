@@ -65,7 +65,9 @@ const PrivacyPolicy = () => {
           over the internet or electronic storage is 100% secure.
         </p>
         <p style={styles.paragraph}>
-          If you have any questions or concerns about our privacy practices, please <a href="/contact-us" style={{ color: '#e50914', textDecoration: 'underline' }}>contact us</a>.
+          If you have any questions or concerns about our privacy practices, please <Link to="/contact-us" style={{ color: '#e50914', textDecoration: 'underline' }}>
+    contact us
+  </Link>.
         </p>
       </div>
     </div>
