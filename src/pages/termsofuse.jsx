@@ -65,7 +65,7 @@ const TermsOfUse = () => {
           the service following changes means you accept those changes.
         </p>
         <p style={styles.paragraph}>
-          If you have any questions about these terms, please <a href="/contact-us" style={{ color: '#e50914', textDecoration: 'underline' }}>contact us</a>.
+          If you have any questions about these terms, please contact us
         </p>
       </div>
     </div>
