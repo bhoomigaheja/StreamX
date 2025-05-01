@@ -29,7 +29,7 @@ const Footer = () => {
         <li><Link to="/privacy">Privacy</Link></li>
         <li><Link to="/contact-us">Contact Us</Link></li>
         <li><Link to="/login">Login</Link></li>  {/* Added Login link */}
-        <li><Link to="/signup">Sign Up</Link></li> {/* Added Sign Up link */}
+        
         <li><Link to="/movies">Movies</Link></li> {/* Added Movies link */}
         <li><Link to="/tv-shows">TV Shows</Link></li> {/* Added TV Shows link */}
         <li><Link to="/new-popular">New & Popular</Link></li> {/* Added New & Popular link */}
