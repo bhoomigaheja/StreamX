@@ -172,4 +172,16 @@ background: #6d6d6e66;
     right: 1rem;
     cursor: pointer;
   }
+  .hero {
+    max-height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .banner-video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    display: block;
+  }
   

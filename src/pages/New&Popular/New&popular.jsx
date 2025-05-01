@@ -6,14 +6,15 @@ import Footer from "../../components/Footer/Footer";
 
 
 const CATEGORIES = [
- 
+  { id: "classic_movies", title: "Classic Movies", category: "classic" },
   { id: "action_movies", title: "Action Packed Movies", category: "action" },
-  { id: "popular_tv", title: "Popular TV Shows", category: "popular" },
-  { id: "south_indian_movies", title: "South Indian Movies", category: "south indian" },
+  { id: "popular_tv", title: "Popular TV Shows", category: "music" },
+  { id: "Mystery_movies", title: "South Indian Movies", category: "mystery" },
   { id: "hollywood_action", title: "Hollywood Action", category: "action" },
   { id: "comedy_movies", title: "Comedy Movies", category: "comedy" },
-  { id: "documentaries", title: "Documentaries", category: "documentary" },
+  { id: "Anime", title: "Documentaries", category: "anime" },
   
+ 
 ];
 
 const NewPopular = () => {
