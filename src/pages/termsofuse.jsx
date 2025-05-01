@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const TermsOfUse = () => {
   const navigate = useNavigate();
@@ -65,8 +66,11 @@ const TermsOfUse = () => {
           the service following changes means you accept those changes.
         </p>
         <p style={styles.paragraph}>
-          If you have any questions about these terms, please contact us
-        </p>
+  If you have any questions about these terms, please{' '}
+  <Link to="/contact-us" style={{ color: '#e50914', textDecoration: 'underline' }}>
+    contact us
+  </Link>.
+</p>
       </div>
     </div>
   );
